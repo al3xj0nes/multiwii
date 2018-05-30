@@ -36,7 +36,7 @@
     //#define BI
     //#define TRI
     //#define QUADP
-    //#define QUADX
+    #define QUADX
     //#define Y4
     //#define Y6
     //#define HEX6
@@ -69,11 +69,11 @@
   /****************************    Mincommand          *******************************/
     /* this is the value for the ESCs when they are not armed
        in some cases, this value must be lowered down to 900 for some specific ESCs, otherwise they failed to initiate */
-    #define MINCOMMAND  1000
+    #define MINCOMMAND 950
 
   /**********************************  I2C speed for old WMP config (useless config for other sensors)  *************/
-    #define I2C_SPEED 100000L     //100kHz normal mode, this value must be used for a genuine WMP
-    //#define I2C_SPEED 400000L   //400kHz fast mode, it works only with some WMP clones
+    //#define I2C_SPEED 100000L     //100kHz normal mode, this value must be used for a genuine WMP
+    #define I2C_SPEED 400000L   //400kHz fast mode, it works only with some WMP clones
 
   /***************************    Internal i2c Pullups   ********************************/
     /* enable internal I2C pull ups (in most cases it is better to use external pullups) */
@@ -91,7 +91,7 @@
          please submit any correction to this list.
            Note from Alex: I only own some boards, for other boards, I'm not sure, the info was gathered via rc forums, be cautious */
       //#define FFIMUv1         // first 9DOF+baro board from Jussi, with HMC5843                   <- confirmed by Alex
-      //#define FFIMUv2         // second version of 9DOF+baro board from Jussi, with HMC5883       <- confirmed by Alex
+      #define FFIMUv2         // second version of 9DOF+baro board from Jussi, with HMC5883       <- confirmed by Alex
       //#define FREEIMUv1       // v0.1 & v0.2 & v0.3 version of 9DOF board from Fabio
       //#define FREEIMUv03      // FreeIMU v0.3 and v0.3.1
       //#define FREEIMUv035     // FreeIMU v0.3.5 no baro
@@ -394,7 +394,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
          You have to invert the S-Bus-Serial Signal e.g. with a Hex-Inverter like IC SN74 LS 04 */
       //#define SBUS     PITCH,YAW,THROTTLE,ROLL,AUX1,AUX2,AUX3,AUX4,8,9,10,11,12,13,14,15,16,17  // dsm2 orangerx
       //#define SBUS     ROLL,PITCH,THROTTLE,YAW,AUX1,AUX2,AUX3,AUX4,8,9,10,11,12,13,14,15,16,17  // T14SG
-      //#define RX_SERIAL_PORT 1
+      #define RX_SERIAL_PORT 1
       #define SBUS_MID_OFFSET 988 //SBUS Mid-Point at 1500
 
     /******************************* HOTT RECIVER ************************************/
@@ -499,7 +499,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
     /* This is the speed of the serial interfaces */
     #define SERIAL0_COM_SPEED 115200
     #define SERIAL1_COM_SPEED 115200
-    #define SERIAL2_COM_SPEED 115200
+    #define SERIAL2_COM_SPEED 57600
     #define SERIAL3_COM_SPEED 115200
 
     /* when there is an error on I2C bus, we neutralize the values during a short time. expressed in microseconds
@@ -556,7 +556,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
   /* Automatically increase throttle based on the angle of the copter
      Original idea by Kraut Rob, first implementation HAdrian */
 
-  //#define THROTTLE_ANGLE_CORRECTION 40
+  #define THROTTLE_ANGLE_CORRECTION 40
   
   /*** HEADFREE : the copter can be controled by an absolute stick orientation, whatever the yaw orientation ***/
   //#define HEADFREE
@@ -664,7 +664,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
        in NMEA mode the GPS must be configured to output GGA and RMC NMEA sentences (which is generally the default conf for most GPS devices)
        at least 5Hz update rate. uncomment the first line to select the GPS serial port of the arduino */
        
-    //#define GPS_SERIAL 2         // should be 2 for flyduino v2. It's the serial port number on arduino MEGA
+    #define GPS_SERIAL 2         // should be 2 for flyduino v2. It's the serial port number on arduino MEGA
                                    // must be 0 for PRO_MINI (ex GPS_PRO_MINI)
                                    // note: Now a GPS can share MSP on the same port. The only constrain is to not use it simultaneously, and use the same port speed.
 
@@ -678,11 +678,11 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
        With UBLOX and MTK_BINARY you don't have to use GPS_FILTERING in multiwii code !!! */
 
     
-    //#define NMEA
+    #define NMEA
     //#define UBLOX
     //#define MTK_BINARY16
     //#define MTK_BINARY19
-    //#define INIT_MTK_GPS        // initialize MTK GPS for using selected speed, 5Hz update rate and GGA & RMC sentence or binary settings
+    #define INIT_MTK_GPS        // initialize MTK GPS for using selected speed, 5Hz update rate and GGA & RMC sentence or binary settings
 
 
     /* I2C GPS device made with an independant arduino + GPS device
@@ -721,7 +721,7 @@ At this moment you can use this function only with WinGUI 2.3 release. MultiWiiC
 Convert the degree+minutes into decimal degree by ==> degree+minutes*(1/60)
 Note the sign on declination it could be negative or positive (WEST or EAST)
 Also note, that maqgnetic declination changes with time, so recheck your value every 3-6 months */
-#define MAG_DECLINATION  4.02f   //(**)
+#define MAG_DECLINATION  -1.77f   //(**)
 
 // Adds a forward predictive filterig to compensate gps lag. Code based on Jason Short's lead filter implementation
 #define GPS_LEAD_FILTER               //(**)
@@ -892,7 +892,7 @@ Also note, that maqgnetic declination changes with time, so recheck your value e
        vbat = [0;1023]*16/VBATSCALE
        must be associated with #define BUZZER ! */
     //#define VBAT              // uncomment this line to activate the vbat code
-    #define VBATSCALE       131 // (*) (**) change this value if readed Battery voltage is different than real voltage
+    #define VBATSCALE       150 // (*) (**) change this value if readed Battery voltage is different than real voltage
     #define VBATNOMINAL     126 // 12,6V full battery nominal voltage - only used for lcd.telemetry
     #define VBATLEVEL_WARN1 107 // (*) (**) 10,7V
     #define VBATLEVEL_WARN2  99 // (*) (**) 9.9V
